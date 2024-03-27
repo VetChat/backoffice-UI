@@ -1,14 +1,14 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Case from "../pages/Case/Case";
+import Layout from "../components/Layout/Layout";
 
 const ContentRouter = () => {
   return (
-    <BrowserRouter>
+    <Layout>
       <Routes>
         <Route path="/" element={<Case />} />
       </Routes>
-    </BrowserRouter>
+    </Layout>
   );
 };
 

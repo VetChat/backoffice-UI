@@ -1,11 +1,13 @@
-import Layout from "./components/Layout/Layout";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ContentRouter from "./routers/ContentRouter";
 
 function App() {
   return (
-    <Layout>
-      <ContentRouter />
-    </Layout>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/*" element={<ContentRouter />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
