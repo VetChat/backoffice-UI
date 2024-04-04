@@ -4,8 +4,6 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -17,21 +15,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { SingleItemForm } from "@/components/Form/SingleItemForm";
+import { DataTablePagination } from "../utils/Pagination";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { DataTablePagination } from "../utils/Pagination";
-import { SingleItemForm } from "@/components/Form/SingleItemForm";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  handleAddAnimal: (animalName: string) => void;
+  handleAddSymptom: (animalName: string) => void;
 }
 
 const DataTable = <TData, TValue>({
   columns,
   data,
-  handleAddAnimal,
+  handleAddSymptom,
 }: DataTableProps<TData, TValue>) => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -39,8 +37,6 @@ const DataTable = <TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     state: {
@@ -52,12 +48,12 @@ const DataTable = <TData, TValue>({
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter animal..."
+          placeholder="Filter symptom..."
           value={
-            (table.getColumn("animalName")?.getFilterValue() as string) ?? ""
+            (table.getColumn("symptomName")?.getFilterValue() as string) ?? ""
           }
           onChange={(event) =>
-            table.getColumn("animalName")?.setFilterValue(event.target.value)
+            table.getColumn("symptomName")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -112,8 +108,8 @@ const DataTable = <TData, TValue>({
       </div>
       <div className="pb-1">
         <SingleItemForm
-          onSubmit={handleAddAnimal}
-          placeholder="Enter Animal..."
+          onSubmit={handleAddSymptom}
+          placeholder="Enter Symptom..."
         />
       </div>
       <DataTablePagination table={table} />

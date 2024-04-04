@@ -1,13 +1,14 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { IoTrashOutline } from "react-icons/io5";
-export interface Animal {
+
+export interface Symptom {
   index: number;
-  animalId: number;
-  animalName: string;
-  onDelete: (animalId: number, animalName: string) => void;
+  symptomId: number;
+  symptomName: string;
+  onDelete: (symptomId: number, symptomName: string) => void;
 }
 
-export const columns: ColumnDef<Animal>[] = [
+export const columns: ColumnDef<Symptom>[] = [
   {
     header: "No.",
     cell: ({ row }) => {
@@ -16,21 +17,21 @@ export const columns: ColumnDef<Animal>[] = [
     enableSorting: false,
   },
   {
-    accessorKey: "animalId",
-    header: "Animal ID",
+    accessorKey: "symptomId",
+    header: "Symptom ID",
   },
   {
-    accessorKey: "animalName",
-    header: "Animal Name",
+    accessorKey: "symptomName",
+    header: "Symptom Name",
   },
   {
     id: "actions",
     cell: ({ row }) => {
-      const animal = row.original;
+      const symptom = row.original;
       return (
         <div
           onClick={() => {
-            animal.onDelete(animal.animalId, animal.animalName);
+            symptom.onDelete(symptom.symptomId, symptom.symptomName);
           }}
           className="text-red-600 w-fit text-lg transition-all cursor-pointer hover:scale-125"
         >

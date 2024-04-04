@@ -1,54 +1,54 @@
-import { AnimalsService } from "@/client";
+import { SymptomsService } from "@/client";
 import PageTitle from "@/components/Atoms/Text/PageTitle";
 import {
-  Animal as Animals,
   columns,
-} from "@/components/Table/AnimalTable/Columns";
-import DataTable from "@/components/Table/AnimalTable/DataTable";
+  Symptom as Symptoms,
+} from "@/components/Table/Symptom/Columns";
+import DataTable from "@/components/Table/Symptom/DataTable";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
-const Animal = () => {
+const Symptom = () => {
   const queryClient = useQueryClient();
 
-  const animals = useQuery({
-    queryKey: ["animals"],
+  const symptoms = useQuery({
+    queryKey: ["symptoms"],
     queryFn: () =>
-      AnimalsService.animalsGetAnimal().then((res) => {
-        const animals: Animals[] = res.map((item, index) => ({
+      SymptomsService.symptomsGetSymptoms().then((res) => {
+        const symptom: Symptoms[] = res.map((item, index) => ({
           index: index,
-          animalId: item.animalId,
-          animalName: item.animalName,
-          onDelete: deleteAnimalData,
+          symptomId: item.symptomId,
+          symptomName: item.symptomName,
+          onDelete: deleteSymptomData,
         }));
-        return animals;
+        return symptom;
       }),
   });
 
-  const postAnimal = useMutation({
-    mutationFn: (animalName: string) =>
-      AnimalsService.animalsAddAnimal({
-        requestBody: { animalName: animalName },
+  const postSymptom = useMutation({
+    mutationFn: (symptomName: string) =>
+      SymptomsService.symptomsAddSymptom({
+        requestBody: {
+          symptomName: symptomName,
+        },
       }),
-    onSuccess: () => {
+    onSuccess: () =>
       queryClient.invalidateQueries({
-        queryKey: ["animals"],
-      });
-    },
+        queryKey: ["symptoms"],
+      }),
   });
 
-  const deleteAnimal = useMutation({
-    mutationFn: (animalId: number) =>
-      AnimalsService.animalsRemoveAnimal({ animalId: animalId }),
-    onSuccess: () => {
+  const deleteSymptom = useMutation({
+    mutationFn: (symptomId: number) =>
+      SymptomsService.symptomsRemoveSymptom({ symptomId: symptomId }),
+    onSuccess: () =>
       queryClient.invalidateQueries({
-        queryKey: ["animals"],
-      });
-    },
+        queryKey: ["symptoms"],
+      }),
   });
 
-  const addAnimalData = (animalName: string) => {
-    postAnimal.mutateAsync(animalName).then((res) => {
+  const addSymptomData = (animalName: string) => {
+    postSymptom.mutateAsync(animalName).then((res) => {
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -67,9 +67,9 @@ const Animal = () => {
     });
   };
 
-  const deleteAnimalData = (animalId: number, animalName: string) => {
+  const deleteSymptomData = (symptomId: number, symptomName: string) => {
     Swal.fire({
-      title: `Deleting '${animalName}'`,
+      title: `Deleting '${symptomName}'`,
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
@@ -78,7 +78,7 @@ const Animal = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteAnimal.mutateAsync(animalId).then((res) => {
+        deleteSymptom.mutateAsync(symptomId).then((res) => {
           {
             Swal.fire({
               title: "Deleted!",
@@ -93,12 +93,12 @@ const Animal = () => {
 
   return (
     <div className="p-10 w-full h-full">
-      <PageTitle>Animal</PageTitle>
+      <PageTitle>Symptoms</PageTitle>
       <div className="pt-10">
-        {animals.data && (
+        {symptoms.data && (
           <DataTable
-            handleAddAnimal={addAnimalData}
-            data={animals.data}
+            handleAddSymptom={addSymptomData}
+            data={symptoms.data}
             columns={columns}
           />
         )}
@@ -107,4 +107,4 @@ const Animal = () => {
   );
 };
 
-export default Animal;
+export default Symptom;
