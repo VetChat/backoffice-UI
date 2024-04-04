@@ -5,16 +5,10 @@ import {
   columns,
 } from "@/components/Table/AnimalTable/Columns";
 import DataTable from "@/components/Table/AnimalTable/DataTable";
-import { Button } from "@/components/ui/button";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-import { FaPlus } from "react-icons/fa";
-import { AnimalForm } from "@/components/Form/AnimalForm";
 import Swal from "sweetalert2";
 
 const Animal = () => {
-  const [activeAddAnimal, setActiveAddAnimal] = useState<boolean>(false);
-
   const queryClient = useQueryClient();
 
   const animals = useQuery({
@@ -55,7 +49,6 @@ const Animal = () => {
 
   const addAnimalData = (animalName: string) => {
     postAnimal.mutateAsync(animalName).then((_) => {
-      setActiveAddAnimal(false);
       Swal.fire({
         title: "Animal has been added",
         icon: "success",
