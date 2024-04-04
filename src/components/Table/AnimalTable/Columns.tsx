@@ -4,7 +4,7 @@ export interface Animal {
   index: number;
   animalId: number;
   animalName: string;
-  onDelete: (animalId: number) => void;
+  onDelete: (animalId: number, animalName: string) => void;
 }
 
 export const columns: ColumnDef<Animal>[] = [
@@ -30,7 +30,7 @@ export const columns: ColumnDef<Animal>[] = [
       return (
         <div
           onClick={() => {
-            animal.onDelete(animal.animalId);
+            animal.onDelete(animal.animalId, animal.animalName);
           }}
           className="text-red-600 w-fit text-lg transition-all cursor-pointer hover:scale-125"
         >

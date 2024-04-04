@@ -19,8 +19,8 @@ import {
 } from "@/components/ui/table";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { DataTablePagination } from "./Pagination";
-import { AnimalForm } from "@/components/Form/AnimalForm";
+import { DataTablePagination } from "../utils/Pagination";
+import { SingleItemForm } from "@/components/Form/SingleItemForm";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -52,7 +52,7 @@ const DataTable = <TData, TValue>({
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter animal name..."
+          placeholder="Filter animal..."
           value={
             (table.getColumn("animalName")?.getFilterValue() as string) ?? ""
           }
@@ -111,7 +111,10 @@ const DataTable = <TData, TValue>({
         </Table>
       </div>
       <div className="pb-1">
-        <AnimalForm onSubmit={handleAddAnimal} />
+        <SingleItemForm
+          onSubmit={handleAddAnimal}
+          placeholder="Enter Animal..."
+        />
       </div>
       <DataTablePagination table={table} />
     </div>

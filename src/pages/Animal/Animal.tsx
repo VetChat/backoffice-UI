@@ -49,19 +49,27 @@ const Animal = () => {
 
   const addAnimalData = (animalName: string) => {
     postAnimal.mutateAsync(animalName).then((res) => {
-      Swal.fire({
-        title: "Success",
-        text: res.message,
-        icon: "success",
-        timer: 1500,
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
         showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+      Toast.fire({
+        icon: "success",
+        title: res.message,
       });
     });
   };
 
-  const deleteAnimalData = (animalId: number) => {
+  const deleteAnimalData = (animalId: number, animalName: string) => {
     Swal.fire({
-      title: "Are you sure?",
+      title: `Deleting '${animalName}'`,
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
