@@ -5,18 +5,19 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   title,
   icon,
   href,
-  onClick,
-  isActive,
+  className,
+  activeStyle = "text-white",
+  defaultStyle = "text-[#7E7E7E]",
 }) => {
-  const style =
-    "flex h-full gap-3 pl-10 items-center text-lg hover:text-white ";
-  const activeStyle = style + "text-white";
-  const defaultStyle = style + "text-[#7E7E7E]";
+  const style = "flex h-full gap-3 items-center text-lg hover:text-white ";
+  const activeStyling = style + activeStyle;
+  const inActiveStyling = style + defaultStyle;
   return (
-    <div className="h-[60px] w-full">
+    <div className={`h-[60px] w-full ${className}`}>
       <NavLink
-        className={isActive ? activeStyle : defaultStyle}
-        onClick={onClick}
+        className={({ isActive }) =>
+          isActive ? activeStyling : inActiveStyling
+        }
         to={href}
       >
         {icon}
