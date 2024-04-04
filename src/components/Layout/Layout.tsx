@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="relative h-screen w-screen">
         <div className="flex h-full w-full">
           <Sidebar />
-          {children}
+          <div className="ml-[350px] w-full">{children}</div>
         </div>
       </div>
     </React.StrictMode>

@@ -2,8 +2,9 @@ import { ReactElement } from "react";
 
 export interface SidebarItemProps {
   title: string;
-  icon: ReactElement;
+  icon?: ReactElement;
   href: string;
-  isActive?: boolean;
-  onClick?: () => void;
+  className?: string;
+  activeStyle?: string;
+  defaultStyle?: string;
 }
