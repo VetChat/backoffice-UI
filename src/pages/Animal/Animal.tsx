@@ -48,9 +48,10 @@ const Animal = () => {
   });
 
   const addAnimalData = (animalName: string) => {
-    postAnimal.mutateAsync(animalName).then((_) => {
+    postAnimal.mutateAsync(animalName).then((res) => {
       Swal.fire({
-        title: "Animal has been added",
+        title: "Success",
+        text: res.message,
         icon: "success",
         timer: 1500,
         showConfirmButton: false,

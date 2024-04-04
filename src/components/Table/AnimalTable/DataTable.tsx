@@ -6,7 +6,6 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  SortingState,
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -34,7 +33,6 @@ const DataTable = <TData, TValue>({
   data,
   handleAddAnimal,
 }: DataTableProps<TData, TValue>) => {
-  const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
@@ -42,12 +40,10 @@ const DataTable = <TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     state: {
-      sorting,
       columnFilters,
     },
   });
@@ -114,7 +110,6 @@ const DataTable = <TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      {/* <div className="flex mt-4 items-center gap-2">Add Animal</div> */}
       <div className="pb-1">
         <AnimalForm onSubmit={handleAddAnimal} />
       </div>

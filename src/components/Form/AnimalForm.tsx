@@ -29,6 +29,7 @@ export const AnimalForm: React.FC<AnimalFormProps> = ({ onSubmit }) => {
 
   const onSubmitForm = (values: z.infer<typeof formSchema>) => {
     onSubmit(values.animalName);
+    form.setValue("animalName", "");
   };
 
   return (
@@ -44,6 +45,7 @@ export const AnimalForm: React.FC<AnimalFormProps> = ({ onSubmit }) => {
             <FormItem>
               <FormControl>
                 <Input
+                  spellCheck
                   placeholder="Enter Animal"
                   {...field}
                   className="w-[500px]"

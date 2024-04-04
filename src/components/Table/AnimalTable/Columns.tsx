@@ -1,8 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { IoTrashOutline } from "react-icons/io5";
-import { TbArrowsUpDown } from "react-icons/tb";
-
 export interface Animal {
   index: number;
   animalId: number;
@@ -20,18 +17,7 @@ export const columns: ColumnDef<Animal>[] = [
   },
   {
     accessorKey: "animalId",
-    header: ({ column }) => {
-      return (
-        <Button
-          className="w-fit"
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Animal ID
-          <TbArrowsUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: "Animal ID",
   },
   {
     accessorKey: "animalName",
