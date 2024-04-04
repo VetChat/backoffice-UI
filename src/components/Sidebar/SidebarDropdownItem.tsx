@@ -3,8 +3,8 @@ import SidebarItem from "./SidebarItem";
 
 const itemMenu = [
   { title: "Animal", href: "/items/animal" },
-  { title: "General Symptom", href: "#symptom" },
-  { title: "Urgent Symtomp", href: "#urgentSymptom" },
+  { title: "General Symptom", href: "/items/symptom" },
+  { title: "Urgent Symptom", href: "#urgentSymptom" },
 ];
 
 const SidebarDropdownItem = () => {
