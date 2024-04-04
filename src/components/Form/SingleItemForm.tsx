@@ -11,25 +11,28 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FaPlus } from "react-icons/fa";
-import { AnimalFormProps } from "./interface/AnimalForm";
+import { SingleItemFormProps } from "./interface/Form";
 
 const formSchema = z.object({
-  animalName: z.string().min(2, {
-    message: "Animal must be atleast 2 characters.",
+  itemName: z.string().min(2, {
+    message: "Mst be atleast 2 characters.",
   }),
 });
 
-export const AnimalForm: React.FC<AnimalFormProps> = ({ onSubmit }) => {
+export const SingleItemForm: React.FC<SingleItemFormProps> = ({
+  onSubmit,
+  placeholder,
+}) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      animalName: "",
+      itemName: "",
     },
   });
 
   const onSubmitForm = (values: z.infer<typeof formSchema>) => {
-    onSubmit(values.animalName);
-    form.setValue("animalName", "");
+    onSubmit(values.itemName);
+    form.setValue("itemName", "");
   };
 
   return (
@@ -40,13 +43,13 @@ export const AnimalForm: React.FC<AnimalFormProps> = ({ onSubmit }) => {
       >
         <FormField
           control={form.control}
-          name="animalName"
+          name="itemName"
           render={({ field }) => (
             <FormItem>
               <FormControl>
                 <Input
                   spellCheck
-                  placeholder="Enter Animal"
+                  placeholder={placeholder}
                   {...field}
                   className="w-[500px]"
                 />
