@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { SidebarItemProps } from "./interface/SidebarItem";
+import { SidebarItemProps } from "./interface/Sidebar";
 
 const SidebarItem: React.FC<SidebarItemProps> = ({
   title,
@@ -20,7 +20,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         }
         to={href}
       >
-        {icon}
+        <div className="text-[25px]">{icon}</div>
         {title}
       </NavLink>
     </div>
