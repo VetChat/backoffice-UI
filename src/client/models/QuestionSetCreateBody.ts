@@ -2,10 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type TicketInfo = {
-    ticketAnswerRecordId: number;
-    ticketQuestion: string;
-    ticketAnswer: string;
-    ordinal: number;
+export type QuestionSetCreateBody = {
+    symptomId: number;
+    animalId: number;
 };
 

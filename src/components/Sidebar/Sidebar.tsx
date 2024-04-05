@@ -3,7 +3,6 @@ import SidebarItem from "./SidebarItem";
 import SidebarDropdown from "./SidebarDropdown";
 import { BiSitemap } from "react-icons/bi";
 import { DropDownMenu } from "./interface/Sidebar";
-import { SiKnowledgebase } from "react-icons/si";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
 
 const itemMenus: DropDownMenu[] = [

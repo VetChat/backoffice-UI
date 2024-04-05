@@ -3,21 +3,21 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { UrgentCaseBulkResponse } from '../models/UrgentCaseBulkResponse';
-import type { UrgentCaseByAnimalResponse } from '../models/UrgentCaseByAnimalResponse';
 import type { UrgentCaseCreate } from '../models/UrgentCaseCreate';
 import type { UrgentCaseId } from '../models/UrgentCaseId';
 import type { UrgentCaseResponse } from '../models/UrgentCaseResponse';
 import type { UrgentCaseUpdate } from '../models/UrgentCaseUpdate';
+import type { UrgentCaseWithUrgency } from '../models/UrgentCaseWithUrgency';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class UrgentCasesService {
     /**
      * Get All Urgent Cases
-     * @returns UrgentCaseByAnimalResponse Successful Response
+     * @returns UrgentCaseWithUrgency Successful Response
      * @throws ApiError
      */
-    public static urgentCasesGetAllUrgentCases(): CancelablePromise<Array<UrgentCaseByAnimalResponse>> {
+    public static urgentCasesGetAllUrgentCases(): CancelablePromise<Array<UrgentCaseWithUrgency>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/urgent_cases/',
@@ -25,14 +25,14 @@ export class UrgentCasesService {
     }
     /**
      * Get Urgent Cases By Animal Id
-     * @returns UrgentCaseByAnimalResponse Successful Response
+     * @returns UrgentCaseWithUrgency Successful Response
      * @throws ApiError
      */
     public static urgentCasesGetUrgentCasesByAnimalId({
         animalId,
     }: {
         animalId: number,
-    }): CancelablePromise<Array<UrgentCaseByAnimalResponse>> {
+    }): CancelablePromise<Array<UrgentCaseWithUrgency>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/animal/{animal_id}/urgent_cases',

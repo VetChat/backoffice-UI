@@ -2,10 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type TicketInfo = {
-    ticketAnswerRecordId: number;
+export type TicketLabel = {
     ticketQuestion: string;
-    ticketAnswer: string;
     ordinal: number;
 };
 

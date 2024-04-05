@@ -4,10 +4,9 @@
 /* eslint-disable */
 export type AnswerSummary = {
     answerRecordId: number;
-    questionId: number;
     question: string;
+    imagePath: (string | null);
     ordinal: number;
-    answer_id: number;
     answer: string;
     summary: (string | null);
 };
