@@ -3,8 +3,8 @@ import PageTitle from "@/components/Atoms/Text/PageTitle";
 import {
   columns,
   Symptom as Symptoms,
-} from "@/components/Table/Symptom/Columns";
-import DataTable from "@/components/Table/Symptom/DataTable";
+} from "@/components/Table/SymptomTable/Columns";
+import DataTable from "@/components/Table/SymptomTable/DataTable";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
@@ -93,7 +93,7 @@ const Symptom = () => {
 
   return (
     <div className="p-10 w-full h-full">
-      <PageTitle>Symptoms</PageTitle>
+      <PageTitle>General Symptoms</PageTitle>
       <div className="pt-10">
         {symptoms.data && (
           <DataTable
