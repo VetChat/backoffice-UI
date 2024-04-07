@@ -2,8 +2,9 @@ import { SummaryService } from "@/client";
 import PageTitle from "@/components/Atoms/Text/PageTitle";
 import { Blockquote } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { MdOutlineSpeakerNotes } from "react-icons/md";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Case = () => {
   const { caseId } = useParams();

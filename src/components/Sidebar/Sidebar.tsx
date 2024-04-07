@@ -6,12 +6,12 @@ import { DropDownMenu } from "./interface/Sidebar";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
 
 const itemMenus: DropDownMenu[] = [
-  { title: "Animal", href: "/items/animal" },
-  { title: "General Symptom", href: "/items/symptom" },
+  { title: "Animal", href: "/animal" },
+  { title: "General Symptom", href: "/symptom" },
 ];
 
 const knowledgeMenus: DropDownMenu[] = [
-  { title: "Urgent Symptoms", href: "/knowledge/urgent" },
+  { title: "Urgent Symptoms", href: "/urgent" },
   { title: "Question Sets", href: "#questionSet" },
 ];
 

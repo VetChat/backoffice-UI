@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MdMoreHoriz } from "react-icons/md";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Summary = () => {
   const nevigate = useNavigate();
@@ -66,7 +66,7 @@ const Summary = () => {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
-                onClick={() => nevigate(`/case/${currentCase.caseId}`)}
+                onClick={() => nevigate(`${currentCase.caseId}`)}
               >
                 View summary
               </DropdownMenuItem>
