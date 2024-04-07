@@ -53,7 +53,7 @@ export class UrgentCasesService {
         requestBody,
     }: {
         requestBody: UrgentCaseCreate,
-    }): CancelablePromise<Array<UrgentCaseResponse>> {
+    }): CancelablePromise<UrgentCaseResponse> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/animal/urgent_cases',

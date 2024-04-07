@@ -2,9 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type UrgentCaseUpdate = {
-    urgentId: number;
-    urgentName: string;
-    urgencyId: number;
+export type QuestionId = {
+    questionId: number;
 };
 

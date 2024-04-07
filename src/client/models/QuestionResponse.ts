@@ -2,10 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { QuestionList } from './QuestionList';
+import type { QuestionWithListAnswer } from './QuestionWithListAnswer';
 export type QuestionResponse = {
     symptomId: number;
     symptomName: string;
-    listQuestion: Array<QuestionList>;
+    listQuestion: Array<QuestionWithListAnswer>;
 };
 

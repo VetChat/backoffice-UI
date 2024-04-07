@@ -2,23 +2,23 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { QuestionList } from '../models/QuestionList';
 import type { QuestionSetCreateBody } from '../models/QuestionSetCreateBody';
 import type { QuestionSetResponse } from '../models/QuestionSetResponse';
+import type { QuestionWithListAnswer } from '../models/QuestionWithListAnswer';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class QuestionSetService {
     /**
      * Get Question Set By Question Set Id
-     * @returns QuestionList Successful Response
+     * @returns QuestionWithListAnswer Successful Response
      * @throws ApiError
      */
     public static getQuestionSetByQuestionSetIdQuestionSetQuestionSetIdGet({
         questionSetId,
     }: {
         questionSetId: number,
-    }): CancelablePromise<Array<QuestionList>> {
+    }): CancelablePromise<Array<QuestionWithListAnswer>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/question_set/{question_set_id}',
