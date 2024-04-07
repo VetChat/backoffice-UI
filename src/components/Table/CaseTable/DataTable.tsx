@@ -15,10 +15,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useNavigate } from "react-router-dom";
 import { DataTablePagination } from "../utils/Pagination";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { useDisclosure } from "@mantine/hooks";
+import { Modal } from "@mantine/core";
+import CaseModal from "@/components/Modal/CaseModal";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -29,8 +31,8 @@ const DataTable = <TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) => {
-  const nevigate = useNavigate();
-
+  const [opened, { open, close }] = useDisclosure(false);
+  const [selectedCaseId, setSelectedCaseId] = useState<string>();
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
@@ -46,6 +48,18 @@ const DataTable = <TData, TValue>({
 
   return (
     <div>
+      <Modal
+        size="100%"
+        opened={opened}
+        onClose={() => {
+          close();
+          setSelectedCaseId(undefined);
+        }}
+        centered
+        title="Case summary"
+      >
+        <CaseModal caseId={selectedCaseId} />
+      </Modal>
       <div className="flex items-center py-4">
         <Input
           placeholder="Search Case ID..."
@@ -81,11 +95,12 @@ const DataTable = <TData, TValue>({
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                   className="cursor-pointer"
-                  onClick={() =>
-                    nevigate(
-                      `/case/${(row.original as { caseId: string }).caseId}`
-                    )
-                  }
+                  onClick={() => {
+                    open();
+                    setSelectedCaseId(
+                      (row.original as { caseId: string }).caseId
+                    );
+                  }}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

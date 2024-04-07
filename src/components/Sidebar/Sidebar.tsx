@@ -12,7 +12,7 @@ const itemMenus: DropDownMenu[] = [
 
 const knowledgeMenus: DropDownMenu[] = [
   { title: "Urgent Symptoms", href: "/urgent" },
-  { title: "Question Sets", href: "#questionSet" },
+  { title: "Question Sets", href: "/questionSet" },
 ];
 
 const Sidebar = () => {
