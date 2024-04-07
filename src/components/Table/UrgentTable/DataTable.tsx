@@ -18,17 +18,22 @@ import {
 import { DataTablePagination } from "../utils/Pagination";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { UrgencyRead } from "@/client";
+import AddUrgentForm from "@/components/Form/AddUrgentForm";
+import { UrgentReqBody } from "@/pages/Urgent/interface/Urgent";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  // handleAddUrgent
+  urgencies: UrgencyRead[];
+  handleAddUrgent: (values: UrgentReqBody) => void;
 }
 
 const DataTable = <TData, TValue>({
-  // handleAddUrgent
   columns,
   data,
+  urgencies,
+  handleAddUrgent,
 }: DataTableProps<TData, TValue>) => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -105,12 +110,7 @@ const DataTable = <TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      {/* <div className="pb-1">
-        <SingleItemForm
-          onSubmit={handleAddSymptom}
-          placeholder="Enter Symptom..."
-        />
-      </div> */}
+      <AddUrgentForm urgencies={urgencies} handleAddUrgent={handleAddUrgent} />
       <DataTablePagination table={table} />
     </div>
   );
