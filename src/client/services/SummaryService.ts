@@ -19,7 +19,7 @@ export class SummaryService {
     }: {
         limit?: (number | null),
         startAt?: (number | null),
-    }): CancelablePromise<Array<TicketSummaryResponse>> {
+    }): CancelablePromise<TicketSummaryResponse> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/summary',
