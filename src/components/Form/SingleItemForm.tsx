@@ -15,7 +15,7 @@ import { SingleItemFormProps } from "./interface/Form";
 
 const formSchema = z.object({
   itemName: z.string().min(2, {
-    message: "Mst be atleast 2 characters.",
+    message: "Must be atleast 2 characters.",
   }),
 });
 

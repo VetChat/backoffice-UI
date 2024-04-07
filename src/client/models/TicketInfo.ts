@@ -4,10 +4,8 @@
 /* eslint-disable */
 export type TicketInfo = {
     ticketAnswerRecordId: number;
-    ticketQuestionId: number;
     ticketQuestion: string;
     ticketAnswer: string;
-    pattern: string;
     ordinal: number;
 };
 

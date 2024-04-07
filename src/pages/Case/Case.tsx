@@ -6,9 +6,7 @@ const Case = () => {
   const caseData = useQuery({
     queryKey: ["summary"],
     queryFn: () =>
-      SummaryService.summaryGetSummary({ startAt: 0 }).then((res) =>
-        console.log(res)
-      ),
+      SummaryService.summaryGetSummary({}).then((res) => console.log(res)),
   });
 
   return (

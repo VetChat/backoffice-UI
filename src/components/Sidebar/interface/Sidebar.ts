@@ -8,3 +8,14 @@ export interface SidebarItemProps {
   activeStyle?: string;
   defaultStyle?: string;
 }
+
+export interface SidebarDropdownProps {
+  title: string;
+  icon?: ReactElement;
+  menuItems?: DropDownMenu[];
+}
+
+export interface DropDownMenu {
+  title: string;
+  href: string;
+}

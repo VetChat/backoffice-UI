@@ -2,13 +2,13 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { AnswerRead } from './AnswerRead';
-export type QuestionList = {
+import type { AnswerUpdate } from './AnswerUpdate';
+export type QuestionWithListAnswerUpdate = {
     questionId: number;
     question: string;
     pattern: string;
     imagePath?: (string | null);
     ordinal: number;
-    listAnswer: Array<AnswerRead>;
+    listAnswer: Array<AnswerUpdate>;
 };
 

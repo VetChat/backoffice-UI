@@ -2,11 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { SymptomSummary } from './SymptomSummary';
-import type { TicketInfo } from './TicketInfo';
+import type { TicketDataResponse } from './TicketDataResponse';
+import type { TicketLabel } from './TicketLabel';
 export type TicketSummaryResponse = {
-    ticketId: number;
-    info: Array<TicketInfo>;
-    summary: Array<SymptomSummary>;
+    label: Array<TicketLabel>;
+    listTicket: Array<TicketDataResponse>;
 };
 

@@ -2,12 +2,12 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type AnswerSummary = {
-    answerRecordId: number;
+export type QuestionUpdateFailedResponse = {
+    questionId: number;
     question: string;
-    imagePath: (string | null);
+    pattern: string;
+    imagePath?: (string | null);
     ordinal: number;
-    answer: string;
-    summary: (string | null);
+    message: string;
 };
 

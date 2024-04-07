@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { TicketEachSummaryResponse } from '../models/TicketEachSummaryResponse';
 import type { TicketSummaryResponse } from '../models/TicketSummaryResponse';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -21,7 +22,7 @@ export class SummaryService {
     }): CancelablePromise<Array<TicketSummaryResponse>> {
         return __request(OpenAPI, {
             method: 'GET',
-            url: '/summary/',
+            url: '/summary',
             query: {
                 'limit': limit,
                 'start_at': startAt,
@@ -33,14 +34,14 @@ export class SummaryService {
     }
     /**
      * Get Summary By Ticket Id
-     * @returns TicketSummaryResponse Successful Response
+     * @returns TicketEachSummaryResponse Successful Response
      * @throws ApiError
      */
     public static summaryGetSummaryByTicketId({
         ticketId,
     }: {
         ticketId: number,
-    }): CancelablePromise<TicketSummaryResponse> {
+    }): CancelablePromise<TicketEachSummaryResponse> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/summary/{ticket_id}',

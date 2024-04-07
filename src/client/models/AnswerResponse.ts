@@ -2,8 +2,11 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type UrgentCaseUpdateFailed = {
-    urgentName: string;
+export type AnswerResponse = {
+    answerId: number;
+    answer: string;
+    summary?: (string | null);
+    skipToQuestion?: (number | null);
     message: string;
 };
 
