@@ -2,7 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type UrgentCaseId = {
-    urgentId: number;
+export type Body_Question_create_question = {
+    question_str: string;
+    image?: (Blob | null);
 };
 

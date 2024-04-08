@@ -2,13 +2,15 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { Body_Question_create_question } from '../models/Body_Question_create_question';
+import type { Body_Question_create_questions } from '../models/Body_Question_create_questions';
+import type { Body_Question_update_questions } from '../models/Body_Question_update_questions';
 import type { QuestionCreateBulkResponse } from '../models/QuestionCreateBulkResponse';
 import type { QuestionDeleteBulkResponse } from '../models/QuestionDeleteBulkResponse';
 import type { QuestionId } from '../models/QuestionId';
 import type { QuestionResponse } from '../models/QuestionResponse';
 import type { QuestionSetRequest } from '../models/QuestionSetRequest';
 import type { QuestionUpdateBulkResponse } from '../models/QuestionUpdateBulkResponse';
-import type { QuestionWithListAnswerCreate } from '../models/QuestionWithListAnswerCreate';
 import type { QuestionWithListAnswerCreateResponse } from '../models/QuestionWithListAnswerCreateResponse';
 import type { QuestionWithListAnswerDeleteResponse } from '../models/QuestionWithListAnswerDeleteResponse';
 import type { QuestionWithListAnswerUpdate } from '../models/QuestionWithListAnswerUpdate';
@@ -62,15 +64,15 @@ export class QuestionService {
      * @throws ApiError
      */
     public static questionCreateQuestion({
-        requestBody,
+        formData,
     }: {
-        requestBody: QuestionWithListAnswerCreate,
+        formData: Body_Question_create_question,
     }): CancelablePromise<QuestionWithListAnswerCreateResponse> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/question_set/question',
-            body: requestBody,
-            mediaType: 'application/json',
+            formData: formData,
+            mediaType: 'multipart/form-data',
             errors: {
                 422: `Validation Error`,
             },
@@ -82,15 +84,15 @@ export class QuestionService {
      * @throws ApiError
      */
     public static questionUpdateQuestions({
-        requestBody,
+        formData,
     }: {
-        requestBody: Array<QuestionWithListAnswerUpdate>,
+        formData: Body_Question_update_questions,
     }): CancelablePromise<QuestionUpdateBulkResponse> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/question_set/question/bulk',
-            body: requestBody,
-            mediaType: 'application/json',
+            formData: formData,
+            mediaType: 'multipart/form-data',
             errors: {
                 422: `Validation Error`,
             },
@@ -102,15 +104,15 @@ export class QuestionService {
      * @throws ApiError
      */
     public static questionCreateQuestions({
-        requestBody,
+        formData,
     }: {
-        requestBody: Array<QuestionWithListAnswerCreate>,
+        formData: Body_Question_create_questions,
     }): CancelablePromise<QuestionCreateBulkResponse> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/question_set/question/bulk',
-            body: requestBody,
-            mediaType: 'application/json',
+            formData: formData,
+            mediaType: 'multipart/form-data',
             errors: {
                 422: `Validation Error`,
             },

@@ -3,12 +3,34 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { QuestionSetCreateBody } from '../models/QuestionSetCreateBody';
+import type { QuestionSetRead } from '../models/QuestionSetRead';
 import type { QuestionSetResponse } from '../models/QuestionSetResponse';
 import type { QuestionWithListAnswer } from '../models/QuestionWithListAnswer';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class QuestionSetService {
+    /**
+     * Get Question Set By Animal Id
+     * @returns QuestionSetRead Successful Response
+     * @throws ApiError
+     */
+    public static getQuestionSetByAnimalIdQuestionSetsAnimalAnimalIdGet({
+        animalId,
+    }: {
+        animalId: number,
+    }): CancelablePromise<Array<QuestionSetRead>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/question_sets/animal/{animal_id}',
+            path: {
+                'animal_id': animalId,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
     /**
      * Get Question Set By Question Set Id
      * @returns QuestionWithListAnswer Successful Response

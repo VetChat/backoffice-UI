@@ -2,9 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { UrgentCaseBulkResponse } from '../models/UrgentCaseBulkResponse';
 import type { UrgentCaseCreate } from '../models/UrgentCaseCreate';
-import type { UrgentCaseId } from '../models/UrgentCaseId';
 import type { UrgentCaseResponse } from '../models/UrgentCaseResponse';
 import type { UrgentCaseUpdate } from '../models/UrgentCaseUpdate';
 import type { UrgentCaseWithUrgency } from '../models/UrgentCaseWithUrgency';
@@ -65,26 +63,6 @@ export class UrgentCasesService {
         });
     }
     /**
-     * Add Urgent Cases
-     * @returns UrgentCaseBulkResponse Successful Response
-     * @throws ApiError
-     */
-    public static urgentCasesAddUrgentCases({
-        requestBody,
-    }: {
-        requestBody: Array<UrgentCaseCreate>,
-    }): CancelablePromise<UrgentCaseBulkResponse> {
-        return __request(OpenAPI, {
-            method: 'POST',
-            url: '/animal/urgent_cases/bulk',
-            body: requestBody,
-            mediaType: 'application/json',
-            errors: {
-                422: `Validation Error`,
-            },
-        });
-    }
-    /**
      * Update Urgent Case
      * @returns UrgentCaseResponse Successful Response
      * @throws ApiError
@@ -97,46 +75,6 @@ export class UrgentCasesService {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/urgent_cases',
-            body: requestBody,
-            mediaType: 'application/json',
-            errors: {
-                422: `Validation Error`,
-            },
-        });
-    }
-    /**
-     * Update Urgent Cases
-     * @returns UrgentCaseBulkResponse Successful Response
-     * @throws ApiError
-     */
-    public static urgentCasesUpdateUrgentCases({
-        requestBody,
-    }: {
-        requestBody: Array<UrgentCaseUpdate>,
-    }): CancelablePromise<UrgentCaseBulkResponse> {
-        return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/urgent_cases/bulk',
-            body: requestBody,
-            mediaType: 'application/json',
-            errors: {
-                422: `Validation Error`,
-            },
-        });
-    }
-    /**
-     * Remove Urgent Cases
-     * @returns UrgentCaseBulkResponse Successful Response
-     * @throws ApiError
-     */
-    public static urgentCasesRemoveUrgentCases({
-        requestBody,
-    }: {
-        requestBody: Array<UrgentCaseId>,
-    }): CancelablePromise<UrgentCaseBulkResponse> {
-        return __request(OpenAPI, {
-            method: 'DELETE',
-            url: '/urgent_cases/bulk',
             body: requestBody,
             mediaType: 'application/json',
             errors: {

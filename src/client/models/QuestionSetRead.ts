@@ -2,9 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type AnswerCreate = {
-    answer: string;
-    summary?: (string | null);
-    skipToQuestion?: (number | null);
+export type QuestionSetRead = {
+    questionSetId: number;
+    symptomId: number;
+    animalId: number;
 };
 

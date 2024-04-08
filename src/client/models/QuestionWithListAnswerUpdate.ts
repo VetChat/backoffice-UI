@@ -9,6 +9,7 @@ export type QuestionWithListAnswerUpdate = {
     pattern: string;
     imagePath?: (string | null);
     ordinal: number;
+    haveImage: boolean;
     listAnswer: Array<AnswerUpdate>;
 };
 
