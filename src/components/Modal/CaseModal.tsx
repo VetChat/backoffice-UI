@@ -18,9 +18,9 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseId }) => {
     <div className="w-full h-full text-black">
       <hr />
       <div className="flex flex-col w-full p-4">
-        <div className="mt-2 gap-3">
-          <div className="flex">
-            <div className="text-lg font-semibold">
+        <div className="mt-2">
+          <div className="grid grid-rows-1 grid-flow-col">
+            <div className="w-fit text-lg font-semibold">
               <div>Case:</div>
               {summary.data?.info.map((item, index) => (
                 <div key={index}>{item.ticketQuestion}:</div>
@@ -29,7 +29,7 @@ const CaseModal: React.FC<CaseModalProps> = ({ caseId }) => {
             <div className="text-lg ml-10">
               <div>{caseId}</div>
               {summary.data?.info.map((item, index) => (
-                <div key={index}>{item.ticketAnswer}</div>
+                <div key={index}>{item.ticketAnswer || "-"}</div>
               ))}
             </div>
           </div>
