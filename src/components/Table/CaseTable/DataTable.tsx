@@ -49,7 +49,7 @@ const DataTable = <TData, TValue>({
   return (
     <div>
       <Modal
-        size="100%"
+        size="70%"
         opened={opened}
         onClose={() => {
           close();
