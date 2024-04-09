@@ -4,6 +4,7 @@ import SidebarDropdown from "./SidebarDropdown";
 import { BiSitemap } from "react-icons/bi";
 import { DropDownMenu } from "./interface/Sidebar";
 import { BsFillJournalBookmarkFill } from "react-icons/bs";
+import UserProfile from "./UserProfile/UserProfile";
 
 const itemMenus: DropDownMenu[] = [
   { title: "Animal", href: "/animal" },
@@ -40,6 +41,7 @@ const Sidebar = () => {
           icon={<BsFillJournalBookmarkFill className="text-[22px]" />}
           menuItems={knowledgeMenus}
         />
+        <UserProfile />
       </div>
     </div>
   );
