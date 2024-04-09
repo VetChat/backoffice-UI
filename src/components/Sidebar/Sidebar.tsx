@@ -18,7 +18,7 @@ const knowledgeMenus: DropDownMenu[] = [
 
 const Sidebar = () => {
   return (
-    <div className="h-full bg-[#2F3337] w-[350px] fixed overflow-auto">
+    <div className="h-full bg-[#2F3337] w-[350px] fixed overflow-auto z-50">
       <div className="flex flex-col w-[350px] items-center justify-center h-[90px] bg-[#202122] fixed">
         <div className="text-3xl text-[#03A96B]">VetChat</div>
         <div className="text-sm text-[#03A96B]">BackOffice</div>

@@ -4,6 +4,7 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -38,6 +39,7 @@ DataTableProps<TData, TValue>) => {
     getCoreRowModel: getCoreRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     state: {
       columnFilters,
     },
@@ -105,12 +107,6 @@ DataTableProps<TData, TValue>) => {
           </TableBody>
         </Table>
       </div>
-      {/* <div className="pb-1">
-        <SingleItemForm
-          onSubmit={handleAddSymptom}
-          placeholder="Enter Symptom..."
-        />
-      </div> */}
       <DataTablePagination table={table} />
     </div>
   );

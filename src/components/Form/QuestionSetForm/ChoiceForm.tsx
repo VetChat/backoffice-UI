@@ -4,6 +4,10 @@ import { FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { IoTrashOutline } from "react-icons/io5";
+import { useEffect, useState } from "react";
+import { z } from "zod";
+import { formSchema } from "@/pages/CreateQuestionSet/CreateQuestionSet";
+import { Select } from "@mantine/core";
 
 const AddChoiceForm: React.FC<AddChoiceFormProps> = ({
   nestIndex,
@@ -11,13 +15,29 @@ const AddChoiceForm: React.FC<AddChoiceFormProps> = ({
 }) => {
   const { fields, remove, append } = useFieldArray({
     control,
-    name: `stages.${nestIndex}.options`,
+    name: `stages.${nestIndex}.listAnswer`,
   });
+
+  const [skipOptions, setSkipOptions] = useState<string[]>([]);
+
+  useEffect(() => {
+    const formValue: z.infer<typeof formSchema> =
+      control._formValues as z.infer<typeof formSchema>;
+
+    const indexes: string[] = formValue.stages.map((_, index) =>
+      (index + 1).toString()
+    );
+
+    const options = indexes.filter((index) => parseInt(index) > nestIndex + 2);
+
+    setSkipOptions(options);
+  }, [control]);
 
   const handleAddOption = () => {
     append({
-      optionName: "",
-      optionSummary: "",
+      answer: "",
+      summary: "",
+      skipToQuestion: null,
     });
   };
 
@@ -41,7 +61,7 @@ const AddChoiceForm: React.FC<AddChoiceFormProps> = ({
               </div>
               <FormField
                 control={control}
-                name={`stages.${nestIndex}.options.${key}.optionName`}
+                name={`stages.${nestIndex}.listAnswer.${key}.answer`}
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
@@ -57,15 +77,41 @@ const AddChoiceForm: React.FC<AddChoiceFormProps> = ({
               />
               <FormField
                 control={control}
-                name={`stages.${nestIndex}.options.${key}.optionSummary`}
+                name={`stages.${nestIndex}.listAnswer.${key}.summary`}
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
                       <Input
                         spellCheck
-                        placeholder="Option Summary... (Optional)"
+                        placeholder="Summary... (Optional)"
                         {...field}
-                        className="w-[300px] rounded-2xl"
+                        value={field.value || ""}
+                        className="rounded-2xl"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={control}
+                name={`stages.${nestIndex}.listAnswer.${key}.skipToQuestion`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Select
+                        key={key}
+                        className="rounded-2xl w-[200px]"
+                        data={skipOptions}
+                        onChange={(value) => {
+                          if (!value) {
+                            field.onChange(null);
+                            return;
+                          }
+                          field.onChange(parseInt(value));
+                        }}
+                        placeholder="Skip to question"
+                        clearable
+                        radius={"lg"}
                       />
                     </FormControl>
                   </FormItem>
@@ -85,7 +131,7 @@ const AddChoiceForm: React.FC<AddChoiceFormProps> = ({
       })}
       <Button
         onClick={handleAddOption}
-        className="w-full mt-4 bg-white text-gray-700 border hover:bg-gray-700 hover:text-white hover:border-transparent rounded-lg p-2"
+        className="w-full mt-1 bg-white text-gray-700 border hover:bg-gray-700 hover:text-white hover:border-transparent rounded-lg p-2"
       >
         + Add choice
       </Button>
