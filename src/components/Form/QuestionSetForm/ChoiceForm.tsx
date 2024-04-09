@@ -1,11 +1,6 @@
 import { useFieldArray } from "react-hook-form";
 import { AddChoiceFormProps } from "./interface/QuestionSetForm";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { IoTrashOutline } from "react-icons/io5";

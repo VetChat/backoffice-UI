@@ -8,13 +8,17 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../../ui/form";
-import QuestionTypeCard from "../../Atoms/Card/QuestionTypeCard";
-import { Input } from "../../ui/input";
-import AddChoiceForm from "./AddChoiceForm";
+} from "../../components/ui/form";
+import QuestionTypeCard from "../../components/Atoms/Card/QuestionTypeCard";
+import { Input } from "../../components/ui/input";
+import AddChoiceForm from "../../components/Form/QuestionSetForm/ChoiceForm";
 import QuestionTypeDropdown from "@/components/Atoms/Dropdown/QuestionTypeDropdown";
 import { Button } from "@/components/ui/button";
 import { FiMinimize2 } from "react-icons/fi";
+import { IoTrashOutline } from "react-icons/io5";
+import { useParams } from "react-router-dom";
+import { QuestionSetService } from "@/client";
+import { useQuery } from "@tanstack/react-query";
 
 const REQUIRED_ERROR = "This field is required";
 const ACCEPTED_IMAGE_MIME_TYPES = [
@@ -41,6 +45,7 @@ const formSchema = z.object({
         z.object({
           optionName: z.string().nonempty(REQUIRED_ERROR),
           optionSummary: z.string().optional(),
+          skipToQuestion: z.number().int().optional(),
         })
       ),
     })
@@ -76,13 +81,42 @@ const useDynamicForm = () => {
       image: "",
       options: [{ optionName: "", optionSummary: "" }],
     });
-    form.setValue("activeQuestionSet", fields.length.toString());
+
+    form.setValue("activeQuestionSet", "");
   };
 
   return { form, onSubmitForm, fields, handleRemove, handleAppend };
 };
 
-const AddQuestionsForm: React.FC = () => {
+const CreateQuestionSet: React.FC = () => {
+  // const { questionSetId } = useParams();
+
+  // const questionSet = useQuery({
+  //   queryKey: ["questionSetData", questionSetId],
+  //   queryFn: () =>
+  //     QuestionSetService.getQuestionSetByQuestionSetIdQuestionSetQuestionSetIdGet(
+  //       {
+  //         questionSetId: Number(questionSetId),
+  //       }
+  //     ).then((res) => {
+  //       const formData = res.map((item) => ({
+  //         activeQuestopnSet: "",
+  //         stages: [
+  //           {
+  //             questionName: item.question,
+  //             questionType: item.pattern,
+  //             image: item.imagePath,
+  //             options: item.listAnswer.map((answer) => ({
+  //               optionName: answer.answer,
+  //               optionSummary: answer.,
+  //             })),
+  //             }))
+  //           },
+  //         ],
+  //       }))
+  //     }),
+  // });
+
   const { form, onSubmitForm, fields, handleRemove, handleAppend } =
     useDynamicForm();
 
@@ -92,13 +126,10 @@ const AddQuestionsForm: React.FC = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmitForm)} className="pt-10">
         {fields.map(({ id }, index) => (
-          <div>
+          <div key={id} className="transition-all duration-1000">
             {form.getValues("activeQuestionSet") === id ? (
               <div className="flex gap-4 my-2">
-                <div
-                  className="border-zinc-950 border-2 rounded-2xl w-[900px] p-5"
-                  key={id}
-                >
+                <div className="border-zinc-950 border-2 rounded-2xl w-[900px] p-5">
                   <div>
                     <div className="flex justify-between">
                       <div className="font-bold text-2xl pb-5">
@@ -209,12 +240,19 @@ const AddQuestionsForm: React.FC = () => {
               >
                 <div className="px-10">
                   <div className="font-semibold text-sm">
-                    {/* {form.getValues(`stages.${index}.questionName`)} */}
                     Question {index + 1} -{" "}
                     {form.getValues(`stages.${index}.questionType`)}
                   </div>
                   <div className="text-lg font-bold">
                     {form.getValues(`stages.${index}.questionName`) || "N/A"}
+                  </div>
+                </div>
+                <div
+                  onClick={() => handleRemove(index)}
+                  className="flex items-center transition cursor-pointer hover:border-red-600 hover:scale-110 justify-center mr-10 bg-gray-100 h-10 w-10 border rounded-xl"
+                >
+                  <div className="text-sm font-semibold text-red-600">
+                    <IoTrashOutline size={20} />
                   </div>
                 </div>
               </div>
@@ -232,4 +270,4 @@ const AddQuestionsForm: React.FC = () => {
   );
 };
 
-export default AddQuestionsForm;
+export default CreateQuestionSet;
