@@ -9,6 +9,6 @@ export type QuestionWithListAnswer = {
     pattern: string;
     imagePath?: (string | null);
     ordinal: number;
-    listAnswer: Array<AnswerRead>;
+    listAnswer: Array<(AnswerRead | null)>;
 };
 

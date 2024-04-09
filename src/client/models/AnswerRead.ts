@@ -5,6 +5,7 @@
 export type AnswerRead = {
     answerId: number;
     answer: string;
+    summary?: (string | null);
     skipToQuestion?: (number | null);
 };
 

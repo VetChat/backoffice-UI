@@ -9,11 +9,11 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class AnswerRecordsService {
     /**
-     * Create Answer Records And Return Summary
+     * Create Answer Records
      * @returns AnswerRecordResponse Successful Response
      * @throws ApiError
      */
-    public static answerRecordsCreateAnswerRecordsAndReturnSummary({
+    public static answerRecordsCreateAnswerRecords({
         requestBody,
     }: {
         requestBody: AnswerRecordCreate,
